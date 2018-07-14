@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import NavBar from './components/Navbar';
 import Board from './components/Board';
 // import './styles/index.css'
-import { gameStart } from './httpHelpers';
+import { gameStart, checkWinner } from './httpHelpers';
+
 class App extends React.Component {
   constructor(props) {
     super(props);

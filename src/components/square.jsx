@@ -16,11 +16,10 @@ class Square extends Component {
   render() {
     const { number } = this.props;
     return (
-      <div 
-      onClick={ () => this.handleClick() }
-      onKeyPress={ (e) => {
-        console.log(e)
-      }}
+      <div
+        role="presentation"
+        onClick={() => this.handleClick()}
+        className="square"
       >
         {number}
       </div>
