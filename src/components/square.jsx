@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from '../styles/Square.css';
 
 class Square extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class Square extends Component {
       <div
         role="presentation"
         onClick={() => this.handleClick()}
-        className="square"
+        className={styles.square}
       >
         {number}
       </div>

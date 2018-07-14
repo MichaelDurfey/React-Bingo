@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from './components/Navbar';
 import Board from './components/Board';
-// import './styles/index.css'
+import styles from './styles/index.css';
 import { gameStart, checkWinner } from './httpHelpers';
 
 class App extends React.Component {
@@ -26,10 +26,10 @@ class App extends React.Component {
   render() {
     const { boards } = this.state;
     return (
-      <div>
+      <div className={styles.container}>
         <NavBar />
-        <div className="container">
-          { boards.map(board => <Board board={board} />) }
+        <div>
+          { boards.map(board => <Board key={board[0].toString()} board={board} />) }
         </div>
       </div>
     );
