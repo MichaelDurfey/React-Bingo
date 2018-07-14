@@ -6,7 +6,8 @@ const router = express.Router();
 router
   .get('/start', (req, res) => {
     db.initialize();
-    res.json(db.boards);
+    res.send(db.boards);
+
   })
   .get('/draw', (req, res) => {
 
