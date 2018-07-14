@@ -4,7 +4,8 @@
   "description": "Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "webpack --watch --config ./webpack.server.config.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,13 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "nodemon": "^1.18.1",
     "react-hot-loader": "^4.2.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
@@ -29,7 +37,9 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "css-loader": "^0.28.11",
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "prop-types": "^15.6.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   }

@@ -1,0 +1,19 @@
+import React, { Component } from 'react';
+
+
+class Board extends Component {
+  constructor() {
+    super();
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+}

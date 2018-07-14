@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NavBar from './components/Navbar'
-import './index.css'
+import NavBar from './components/Navbar';
+import Board from './components/Board';
+// import './styles/index.css'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,13 +12,16 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    // beginGame()
+  }
 
   render() {
     return (
     <div>
       <NavBar />
       <div className="container">
-        Hello React
+        <Board size={5} />
       </div>
     </div>
     );
@@ -26,4 +30,4 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
-module.hot.accept();
+// module.hot.accept();
