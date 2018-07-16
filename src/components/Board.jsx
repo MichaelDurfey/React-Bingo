@@ -15,7 +15,7 @@ class Board extends Component {
     const { board } = this.props;
     const squares = [];
     board.forEach((arr) => {
-      arr.forEach(number => squares.push(<Square key={number} number={number} />));
+      arr.forEach(number => squares.push(<Square selected={false} key={number} number={number} />));
     });
     return (
       <div className={styles.board}>

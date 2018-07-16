@@ -1,4 +1,13 @@
 :local(.board) {
-  width: 250px;
-  height: 250px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(45px, 4vw));
+  grid-template-rows: repeat(5, minmax(45px, 4vw)) ;
+  flex-basis: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  justify-content: center;
+}
+
+.board > div {
+  flex-grow: 2;
 }

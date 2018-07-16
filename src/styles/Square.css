@@ -1,4 +1,10 @@
 :local(.square) {
-  width: 45px;
-  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid #dfdfdf 0.5px;
+}
+
+:local(.squareSelected) {
+  background-color: blue;
 }

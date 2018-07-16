@@ -1,7 +1,26 @@
 :local(.container) {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: space-around;
+}
 
+:local(.boardContainer) {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
 }

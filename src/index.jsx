@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <NavBar />
-        <div>
+        <div className={styles.boardContainer}>
           { boards.map(board => <Board key={board[0].toString()} board={board} />) }
         </div>
       </div>
