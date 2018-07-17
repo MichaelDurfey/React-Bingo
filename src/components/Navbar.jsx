@@ -9,18 +9,16 @@ const number = num => (
 );
 
 const lastPlayedBall = lastBall => (
-  lastBall ? (
-    <div className={styles.lastBall}>
-      { lastBall }
-    </div>
-  ) : ''
+  <div className={styles.lastBall}>
+    { lastBall }
+  </div>
 );
 
 const Navbar = (props) => {
   const { lastBall, played } = props;
   const history = [];
   for (let i = played.length - 1; i >= 0; i -= 1) {
-    const cleanedNum = played[i] < 10 ? `0${played[i]}` : played[i].toString();
+    const cleanedNum = played[i] < 10 ? `0${played[i]}` : `${played[i]}`;
     history.push(number(cleanedNum));
   }
   return (
@@ -29,7 +27,7 @@ const Navbar = (props) => {
             Last Ball
       </div>
       {
-        lastPlayedBall(lastBall)
+        lastBall ? lastPlayedBall(lastBall) : null
       }
       <div>
         <div className={styles.playedText}>

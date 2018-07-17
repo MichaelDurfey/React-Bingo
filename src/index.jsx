@@ -10,8 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       boards: [],
-      lastBall: 55,
-      played: [1, 2, 3, 4, 5],
+      lastBall: null,
+      played: [],
     };
   }
 

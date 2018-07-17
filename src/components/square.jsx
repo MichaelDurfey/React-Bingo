@@ -11,7 +11,7 @@ const Square = (props) => {
       onClick={() => props.handleClick()}
       className={selected ? `${styles.squareSelected} ${styles.square}` : styles.square}
     >
-      {number < 10 ? `0${number}` : number.toString()}
+      {number < 10 ? `0${number}` : `${number}`}
     </div>
   );
 };
