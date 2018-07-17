@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from './components/Navbar';
 import Board from './components/Board';
-// import './styles/index.css'
-import { gameStart, checkWinner } from './httpHelpers';
+import styles from './styles/index.css';
+import { gameStart } from './httpHelpers';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       boards: [],
+      lastBall: null,
+      played: [],
     };
   }
 
@@ -24,12 +26,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { boards } = this.state;
+    const { boards, lastBall, played } = this.state;
     return (
-      <div>
-        <NavBar />
-        <div className="container">
-          { boards.map(board => <Board board={board} />) }
+      <div className={styles.container}>
+        <NavBar lastBall={lastBall} played={played} />
+        <div className={styles.boardContainer}>
+          { boards.map(board => <Board key={board[0].toString()} board={board} />) }
         </div>
       </div>
     );

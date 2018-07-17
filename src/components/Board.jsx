@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Square from './square';
+import styles from '../styles/Board.css'
 
 class Board extends Component {
   constructor() {
@@ -14,10 +15,10 @@ class Board extends Component {
     const { board } = this.props;
     const squares = [];
     board.forEach((arr) => {
-      arr.forEach(number => squares.push(<Square number={number} />));
+      arr.forEach(number => squares.push(<Square selected={false} key={number} number={number} />));
     });
     return (
-      <div>
+      <div className={styles.board}>
         { squares }
       </div>
     );

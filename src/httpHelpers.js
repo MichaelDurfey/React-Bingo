@@ -6,4 +6,4 @@ const checkWinner = id => axios.get(`/verify${id}`);
 
 const drawBall = () => axios.get('/draw');
 
-module.exports = { gameStart, checkWinner, drawBall };
+export { gameStart, checkWinner, drawBall };

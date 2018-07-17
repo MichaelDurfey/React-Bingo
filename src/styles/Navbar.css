@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+:local(.navBar) {
+  width: 100%;
+  min-height: 75px;
+  background-color: rgb(230, 234, 238);
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+}
+
+:local(.lastBallText){
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  color: #6f7f83;
+}
+
+:local(.lastBall) {
+  width: 50px;
+  height: 32px;
+  border: solid #0070BA 1px;
+  background-color: #fff;
+  color: #0070BA;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+:local(.playedNumbers) {
+  display: flex;
+}
+
+:local(.playedText){
+  font-size: 12px;
+  font-variant: small-caps;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #819599;
+  margin-bottom: 4px;
+}
+
+:local(.playedNumber) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 3px;
+  width: 45px;
+  height: 25px;
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-right: 5px;
+  margin-left: 2px;
+  background-color: rgb(245, 247, 248);
+  color: rgb(117, 136, 139);
+}
