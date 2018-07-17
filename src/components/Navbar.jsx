@@ -26,14 +26,14 @@ const Navbar = (props) => {
   return (
     <div className={styles.navBar}>
       <div className={styles.lastBallText}>
-            Last Ball:
+            Last Ball
       </div>
       {
         lastPlayedBall(lastBall)
       }
       <div>
         <div className={styles.playedText}>
-          previous balls:
+          previous balls
         </div>
         <div className={styles.playedNumbers}>
           { history }

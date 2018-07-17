@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import NavBar from './components/Navbar';
 import Board from './components/Board';
 import styles from './styles/index.css';
-import { gameStart, checkWinner } from './httpHelpers';
+import { gameStart } from './httpHelpers';
 
 class App extends React.Component {
   constructor(props) {
