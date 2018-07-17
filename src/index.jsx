@@ -10,6 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       boards: [],
+      lastBall: 55,
+      played: [1, 2, 3, 4, 5],
     };
   }
 
@@ -24,10 +26,10 @@ class App extends React.Component {
   }
 
   render() {
-    const { boards } = this.state;
+    const { boards, lastBall, played } = this.state;
     return (
       <div className={styles.container}>
-        <NavBar />
+        <NavBar lastBall={lastBall} played={played} />
         <div className={styles.boardContainer}>
           { boards.map(board => <Board key={board[0].toString()} board={board} />) }
         </div>

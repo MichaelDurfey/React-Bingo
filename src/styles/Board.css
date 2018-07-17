@@ -7,7 +7,3 @@
   margin-bottom: auto;
   justify-content: center;
 }
-
-.board > div {
-  flex-grow: 2;
-}

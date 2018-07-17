@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import styles from '../styles/Square.css';
 
 const Square = (props) => {
-  const { number, selected } = props;
+  const { selected } = props;
+  const { number } = props;
   return (
     <div
       role="presentation"
       onClick={() => props.handleClick()}
-      className={selected ? styles.squareSelected : styles.square}
+      className={selected ? `${styles.squareSelected} ${styles.square}` : styles.square}
     >
-      {number}
+      {number < 10 ? `0${number}` : number.toString()}
     </div>
   );
 };
