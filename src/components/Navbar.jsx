@@ -29,7 +29,7 @@ const Navbar = (props) => {
       {
         lastBall ? lastPlayedBall(lastBall) : null
       }
-      <div>
+      <div className={styles.playedContainer}>
         <div className={styles.playedText}>
           previous balls
         </div>
