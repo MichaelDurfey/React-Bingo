@@ -1,6 +1,3 @@
-const winningCombos = [[0, 0], [0, 0], [0, 0] ]
-
-
 class BoardClass {
   constructor() {
     this.numbers = [];

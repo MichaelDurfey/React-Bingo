@@ -61,7 +61,7 @@ class App extends React.Component {
         <GameMaster startGame={() => this.start()} drawBall={() => this.draw()} />
         <div className={styles.boardContainer}>
           { boards.map(board => <Board key={board[0].toString()} board={board} />) }
-        </div>        
+        </div>
       </div>
     );
   }
