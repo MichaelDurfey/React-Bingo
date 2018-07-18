@@ -1,6 +1,5 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
-const express = require('express');
 
 const config = require('../webpack.dev.js');
 
