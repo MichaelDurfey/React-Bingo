@@ -1,11 +1,11 @@
 const path = require('path');
-const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.jsx',
-  ],
+  entry: {
+    app: './src/index.jsx',
+  },
   module: {
     rules: [
       {
@@ -17,6 +17,10 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+      },
     ],
   },
   resolve: {
@@ -27,11 +31,12 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  stats: 'errors-only',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
   ],
-  devtool: 'source-map',
   target: 'web',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
