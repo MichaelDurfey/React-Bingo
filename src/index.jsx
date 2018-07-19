@@ -119,7 +119,6 @@ class App extends React.Component {
       <div className={styles.container}>
         <NavBar lastBall={lastBall} played={played} />
         <GameMaster startGame={() => this.start()} drawBall={() => this.draw()} />
-        <Modal />
         { !winnerFound() && renderBoards() }
       </div>
     );
