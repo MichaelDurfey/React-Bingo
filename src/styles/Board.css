@@ -2,8 +2,24 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(45px, 4vw));
   grid-template-rows: repeat(5, minmax(45px, 4vw)) ;
+}
+
+:local(.boardContainer){ 
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   flex-basis: 50%;
   margin-top: auto;
   margin-bottom: auto;
   justify-content: center;
+}
+
+:local(.bingoButton) {
+  width: 80px;
+  height: 25px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #90a2a7;
 }

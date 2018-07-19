@@ -17,11 +17,13 @@ router
       res.send(dbRes);
     }
   })
-  .get('/verify:id', (req, res) => {
-    const player = req.params;
-    console.log(player);
-    res.send(200);
+  .get('/verify/:id', (req, res) => {
+    const player = req.params.id;
+    const winner = db.checkWin(player);
+    res.send({
+      player,
+      winner,
+    });
   });
 
 module.exports = router;
-

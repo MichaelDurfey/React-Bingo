@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/Navbar.css';
 
 const number = num => (
-  <div className={styles.playedNumber}>
+  <div key={num} className={styles.playedNumber}>
     {num}
   </div>
 );

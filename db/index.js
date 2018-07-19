@@ -2,19 +2,18 @@ class BoardClass {
   constructor() {
     this.numbers = [];
     this.players = [];
-    this.boards = {
-      player1: [],
-      player2: [],
-      player3: [],
-      player4: [],
-    };
+    this.boards = {};
     this.played = {};
   }
 
   initialize() {
     this.numbers = Array.from({ length: 100 }, (a, b) => b + 1);
     this.players = ['player1', 'player2', 'player3', 'player4'];
-    this.players.forEach(player => this.generateBoard(player));
+    this.players.forEach((player) => {
+      this.boards[player] = [];
+      this.generateBoard(player);
+    });
+    this.played = {};
   }
 
   shuffle() {
@@ -65,7 +64,7 @@ class BoardClass {
   }
 
   checkWin(player) {
-    const board = this.board[player];
+    const board = this.boards[player];
     if (this.checkDiagonals(board)) {
       return true;
     }

@@ -4,7 +4,7 @@ import NavBar from './components/Navbar';
 import Board from './components/Board';
 import GameMaster from './components/GameMaster';
 import styles from './styles/index.css';
-import { gameStart, drawBall } from './httpHelpers';
+import { gameStart, drawBall, verifyWinner } from './httpHelpers';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +13,9 @@ class App extends React.Component {
       boards: [],
       lastBall: 0,
       played: [],
+      hash: {},
+      winner: null,
+      message: null,
     };
   }
 
@@ -23,9 +26,13 @@ class App extends React.Component {
   start() {
     gameStart()
       .then((res) => {
-        const matrices = Object.values(res.data);
         this.setState(() => ({
-          boards: matrices,
+          boards: res.data,
+          lastBall: 0,
+          played: [],
+          hash: {},
+          winner: null,
+          message: null,
         }),
         () => {
           this.draw();
@@ -36,16 +43,21 @@ class App extends React.Component {
   draw() {
     drawBall()
       .then((res) => {
-        this.setState(({ lastBall, played }) => {
+        this.setState(({ lastBall, played, hash }) => {
+          const updatedHash = Object.assign({}, hash, { [res.data.num]: true });
           if (lastBall) {
             const history = played.slice();
             history.push(lastBall);
             return {
               played: history,
               lastBall: res.data.num,
+              hash: updatedHash,
             };
           }
-          return { lastBall: res.data.num };
+          return {
+            lastBall: res.data.num,
+            hash: updatedHash,
+          };
         });
       })
       .catch((err) => {
@@ -53,15 +65,62 @@ class App extends React.Component {
       });
   }
 
+  checkWinner(id) {
+    verifyWinner(id)
+      .then((res) => {
+        const { player, winner } = res.data;
+        if (winner) {
+          this.setState({
+            winner: player,
+            message: `${player.toUpperCase()} HAS WON!`
+          });
+        } else {
+          this.setState({
+            message: 'No winner found yet!',
+          });
+        }
+      });
+  }
+
   render() {
-    const { boards, lastBall, played } = this.state;
+    const {
+      boards,
+      lastBall,
+      played,
+      hash,
+      message,
+      winner,
+    } = this.state;
+    const matricies = Object.entries(boards);
+    const winnerFound = () => (
+      winner ? (
+        <div>
+          { message }
+        </div>
+      ) : false
+    );
+
+    const renderBoards = () => (
+      <div className={styles.boardMain}>
+        { matricies.map(board => (
+          <Board
+            onClick={id => this.checkWinner(id)}
+            hash={hash}
+            message={message}
+            player={board[0]}
+            key={`${board[1][0].join('')}`}
+            board={board[1]}
+          />))
+        }
+      </div>
+    );
+
     return (
       <div className={styles.container}>
         <NavBar lastBall={lastBall} played={played} />
         <GameMaster startGame={() => this.start()} drawBall={() => this.draw()} />
-        <div className={styles.boardContainer}>
-          { boards.map(board => <Board key={board[0].toString()} board={board} />) }
-        </div>
+        <Modal />
+        { !winnerFound() && renderBoards() }
       </div>
     );
   }

@@ -3,7 +3,7 @@
   height: 100%;
 }
 
-:local(.boardContainer) {
+:local(.boardMain) {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
