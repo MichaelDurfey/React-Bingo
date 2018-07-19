@@ -70,14 +70,23 @@ class App extends React.Component {
       .then((res) => {
         const { player, winner } = res.data;
         if (winner) {
-          this.setState({
-            winner: player,
-            message: `${player.toUpperCase()} HAS WON!`
-          });
+          this.setState(
+            () => ({
+              winner: player,
+              message: `${player.toUpperCase()} HAS WON!`,
+            }),
+            () => {
+              setTimeout(() => {
+                this.setState({ message: '' });
+                this.start();
+              }, 4000);
+            }
+          );
         } else {
-          this.setState({
-            message: 'No winner found yet!',
-          });
+          this.setState(
+            () => ({ message: 'No winner found yet!' }),
+            () => setTimeout(() => { this.setState({ message: '' }); }, 4000)
+          );
         }
       });
   }
@@ -92,14 +101,7 @@ class App extends React.Component {
       winner,
     } = this.state;
     const matricies = Object.entries(boards);
-    const winnerFound = () => (
-      winner ? (
-        <div>
-          { message }
-        </div>
-      ) : false
-    );
-
+    const className = message ? styles.messageShown : styles.messageHidden;
     const renderBoards = () => (
       <div className={styles.boardMain}>
         { matricies.map(board => (
@@ -119,7 +121,10 @@ class App extends React.Component {
       <div className={styles.container}>
         <NavBar lastBall={lastBall} played={played} />
         <GameMaster startGame={() => this.start()} drawBall={() => this.draw()} />
-        { !winnerFound() && renderBoards() }
+        <div className={`${styles.message} ${className}`}>
+          { message }
+        </div>
+        { renderBoards() }
       </div>
     );
   }

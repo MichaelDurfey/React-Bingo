@@ -21,3 +21,32 @@ html, body, #app{
   padding: 0;
   overflow-x: hidden;
 }
+
+:local(.message) {
+  margin-top: 15%;
+  font-size: 25px;
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:local(.messageShown) {
+  animation-duration: 4s;
+  animation-name: slidein;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+}
+
+:local(.messageHidden) {
+  display: hidden;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 42%;
+    width: 100%;
+  }
+}

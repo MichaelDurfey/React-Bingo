@@ -17,7 +17,12 @@ const lastPlayedBall = lastBall => (
 const Navbar = (props) => {
   const { lastBall, played } = props;
   const history = [];
-  for (let i = played.length - 1; i >= 0; i -= 1) {
+  const length = played.length - 1;
+  let end = 0;
+  if (length > 15) {
+    end = length - 15;
+  }
+  for (let i = length; i >= end; i -= 1) {
     const cleanedNum = played[i] < 10 ? `0${played[i]}` : `${played[i]}`;
     history.push(number(cleanedNum));
   }

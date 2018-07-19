@@ -38,7 +38,8 @@
 }
 
 :local(.playedContainer) {
-  max-width: 65%;
+  max-width: 450px;
+  min-height: 80px;
 }
 
 :local(.playedText){
