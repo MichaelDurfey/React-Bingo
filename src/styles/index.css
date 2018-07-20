@@ -3,10 +3,46 @@
   height: 100%;
 }
 
+@media (max-width: 1250px) and (min-width: 850px) {
+  :local(.boardMain) {
+    margin-top: 2%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 850px)   and (min-width: 755px){
+  :local(.boardMain) {
+    margin-top: 2%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 755px) and (min-width:563px){
+  :local(.boardMain) {
+    margin-top: 5%;
+    height: 75%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 562px) {
+  :local(.boardMain) {
+    height: 78em;
+  }
+}
+
+:local(.boardBody) {
+  height: 100%;
+  background-color: rgb(245, 247, 248);
+  display: flex;
+  justify-content: center;
+}
+
 :local(.boardMain) {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  height: 100%;
   background-color: rgb(245, 247, 248);
 }
 
@@ -23,30 +59,42 @@ html, body, #app{
 }
 
 :local(.message) {
-  margin-top: 15%;
-  font-size: 25px;
+  display: flex;
   position: absolute;
+  top: calc((50% - 87px));
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  justify-content: center;
+  width: 100%;
+}
+
+:local(.message > div) {
+  border: solid 1px black;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(245, 247, 248);
+  width: 50%;
+  height: 100%;
 }
 
-:local(.messageShown) {
-  animation-duration: 4s;
-  animation-name: slidein;
-  animation-iteration-count: 1;
-  animation-direction: alternate;
+:local(div.messageHidden) {
+  display: none;
 }
 
-:local(.messageHidden) {
-  display: hidden;
+:local(div.messageShown) {
+  animation-duration: 1s;
+  animation-name: fadeIn;
 }
 
-@keyframes slidein {
+@keyframes fadeIn { 
   from {
-    margin-left: 100%;
-    width: 300%;
-  }
-  to {
-    margin-left: 42%;
-    width: 100%;
+    opacity: 0;
+  } to {
+    opacity: 1;
   }
 }

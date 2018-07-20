@@ -5,6 +5,7 @@
   min-height: 75px;
   background-color: rgb(230, 234, 238);
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   padding: 10px 20px 12px 20px;
   justify-content: space-between;

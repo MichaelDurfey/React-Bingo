@@ -1,3 +1,9 @@
+@media (max-width: 755px) {
+  :local(.boardContainer) {
+    margin: 4%;
+  }
+}
+
 :local(.board) {
   display: grid;
   grid-template-columns: repeat(5, minmax(45px, 4vw));
@@ -8,9 +14,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  flex-basis: 50%;
-  margin-top: auto;
-  margin-bottom: auto;
+  flex-basis: 35%;
   justify-content: center;
 }
 
