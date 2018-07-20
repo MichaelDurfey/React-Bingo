@@ -5,9 +5,9 @@
   min-height: 75px;
   background-color: rgb(230, 234, 238);
   display: flex;
+  flex-shrink: 0;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 10px 20px 12px 20px;
   justify-content: space-between;
 }
 
@@ -35,6 +35,12 @@
 
 :local(.playedNumbers) {
   display: flex;
+  flex-wrap: wrap;
+}
+
+:local(.playedContainer) {
+  max-width: 450px;
+  min-height: 80px;
 }
 
 :local(.playedText){
@@ -42,7 +48,6 @@
   font-variant: small-caps;
   font-family: Arial, Helvetica, sans-serif;
   color: #819599;
-  margin-bottom: 4px;
 }
 
 :local(.playedNumber) {
@@ -55,6 +60,7 @@
   height: 25px;
   font-size: 12px;
   font-family: 'Ubuntu', sans-serif;
+  margin-top: 4px;
   margin-right: 5px;
   margin-left: 2px;
   background-color: rgb(245, 247, 248);

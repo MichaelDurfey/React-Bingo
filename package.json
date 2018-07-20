@@ -4,9 +4,34 @@
   "description": "Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack --watch --config ./webpack.server.config.js",
-    "server": "nodemon ./server/index.js"
+    "dev-client": "webpack-dev-server --config ./webpack.dev.js",
+    "dev-server": "node ./server/dev-server.js",
+    "prod": "webpack --config ./webpack.prod.js",
+    "server": "nodemon ./server/index.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-node",
+    "setupTestFrameworkScriptFile": "<rootDir>/testConfig.js",
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      ".eslintrc.js",
+      "webpack.common.js",
+      "webpack.dev.js",
+      "webpack.prod.js",
+      ".babelrc",
+      "bundle.js",
+      "/coverage/",
+      "knexfile.js",
+      "/server/db/seed.js",
+      "/server/db/migrations"
+    ]
   },
   "repository": {
     "type": "git",
@@ -20,20 +45,28 @@
   "homepage": "https://github.com/MichaelDurfey/React-Boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
-    "mini-css-extract-plugin": "^0.4.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.4.1",
     "nodemon": "^1.18.1",
-    "react-hot-loader": "^4.2.0",
+    "react-hot-loader": "^4.3.3",
+    "react-test-renderer": "^16.4.1",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4"
@@ -43,6 +76,8 @@
     "express": "^4.16.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.4.0",
+    "webpack-merge": "^4.1.3"
   }
 }

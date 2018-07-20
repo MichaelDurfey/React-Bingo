@@ -1,9 +1,13 @@
 {
     "extends": "airbnb",
-    "rules": { "no-plusplus": "warn" },
+    "rules": { 
+        "no-plusplus": "warn",
+        "import/no-extraneous-dependencies": "off"
+    },
     "env": {
         "browser": true,
-        "node": true
+        "node": true,
+        "jest": true
     },
     "parserOptions": {
         "ecmaVersion": 6,

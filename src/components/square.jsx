@@ -8,7 +8,6 @@ const Square = (props) => {
   return (
     <div
       role="presentation"
-      onClick={() => props.handleClick()}
       className={selected ? `${styles.squareSelected} ${styles.square}` : styles.square}
     >
       {number < 10 ? `0${number}` : `${number}`}
@@ -21,5 +20,4 @@ export default Square;
 Square.propTypes = {
   number: PropTypes.number.isRequired,
   selected: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
