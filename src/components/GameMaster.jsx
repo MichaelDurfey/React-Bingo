@@ -6,10 +6,20 @@ const GameMaster = (props) => {
   const { drawBall, startGame } = props;
   return (
     <div className={styles.gameMaster}>
-      <button type="button" onClick={() => drawBall()}>
+      <button
+        className={styles.button}
+        type="button"
+        aria-label="draw Ball"
+        onClick={() => drawBall()}
+      >
         Draw Ball
       </button>
-      <button type="button" onClick={() => startGame()}>
+      <button
+        className={styles.button}
+        aria-label="Start Game"
+        type="button"
+        onClick={() => startGame()}
+      >
         Start Game
       </button>
     </div>
