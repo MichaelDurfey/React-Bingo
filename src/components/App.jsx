@@ -39,6 +39,10 @@ class App extends React.Component {
   }
 
   start() {
+    const { message } = this.state;
+    if (message) {
+      return;
+    }
     gameStart()
       .then((res) => {
         const playerHashes = buildPlayerHashes(res.data);
@@ -57,6 +61,10 @@ class App extends React.Component {
   }
 
   draw() {
+    const { message } = this.state;
+    if (message) {
+      return;
+    }
     drawBall()
       .then((res) => {
         this.setState(({ lastBall, played, playedHash }) => {
@@ -94,13 +102,13 @@ class App extends React.Component {
               setTimeout(() => {
                 this.setState({ message: '' });
                 this.start();
-              }, 4000);
+              }, 2000);
             }
           );
         } else if (!message) {
           this.setState(
             () => ({ message: 'No winner found yet!' }),
-            () => setTimeout(() => { this.setState({ message: '' }); }, 4000)
+            () => setTimeout(() => { this.setState({ message: '' }); }, 2000)
           );
         }
       });
@@ -117,7 +125,6 @@ class App extends React.Component {
     } = this.state;
     const className = message ? styles.messageShown : styles.messageHidden;
     const matricies = Object.entries(boards);
-
     return (
       <div className={styles.container}>
         <NavBar lastBall={lastBall} played={played} />
