@@ -2,9 +2,10 @@ import React from 'react';
 
 const BoardContext = React.createContext({
   checkWinner: () => {},
-  hash: {},
-  player: '',
-  board: [],
+  playerHashes: {},
+  playedHash: '',
+  matricies: [],
+  lastBall: 0,
 });
 
 export default BoardContext;
