@@ -7,18 +7,15 @@ import styles from '../styles/index.css';
 import Message from './Message';
 import { gameStart, drawBall, verifyWinner } from '../lib/httpHelpers';
 
-function buildPlayerHashes(board) {
-  const playerHashes = Object.entries(board)
+function buildBoardHashes(board) {
+  const boardHashes = Object.entries(board)
     .reduce((acc, entry) => {
       acc[entry[0]] = entry[1]
         .reduce((arr, curr) => arr.concat(curr))
-        .reduce((hash, curr) => {
-          hash[curr] = true;
-          return hash;
-        }, {});
+        .reduce((hash, curr) => ({ ...hash, [curr]: true }), {});
       return acc;
     }, {});
-  return playerHashes;
+  return boardHashes;
 }
 
 class App extends React.Component {
@@ -45,7 +42,7 @@ class App extends React.Component {
     }
     gameStart()
       .then((res) => {
-        const boardHashes = buildPlayerHashes(res.data);
+        const boardHashes = buildBoardHashes(res.data);
         this.setState(() => ({
           boards: res.data,
           lastBall: 0,
