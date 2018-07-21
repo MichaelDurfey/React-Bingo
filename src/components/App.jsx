@@ -29,7 +29,7 @@ class App extends React.Component {
       lastBall: 0,
       played: [],
       playedHash: {},
-      playerHashes: {},
+      boardHashes: {},
       message: '',
     };
   }
@@ -45,12 +45,12 @@ class App extends React.Component {
     }
     gameStart()
       .then((res) => {
-        const playerHashes = buildPlayerHashes(res.data);
+        const boardHashes = buildPlayerHashes(res.data);
         this.setState(() => ({
           boards: res.data,
           lastBall: 0,
           played: [],
-          playerHashes,
+          boardHashes,
           playedHash: {},
           message: '',
         }),
@@ -89,11 +89,14 @@ class App extends React.Component {
   }
 
   checkWinner(id) {
+    const { message } = this.state;
+    if (message) {
+      return;
+    }
     verifyWinner(id)
       .then((res) => {
         const { player, winner } = res.data;
-        const { message } = this.state;
-        if (!message && winner) {
+        if (winner) {
           this.setState(
             () => ({
               message: `${player.toUpperCase()} HAS WON!`,
@@ -105,7 +108,7 @@ class App extends React.Component {
               }, 2000);
             }
           );
-        } else if (!message) {
+        } else {
           this.setState(
             () => ({ message: 'No winner found yet!' }),
             () => setTimeout(() => { this.setState({ message: '' }); }, 2000)
@@ -119,20 +122,19 @@ class App extends React.Component {
       boards,
       lastBall,
       played,
-      playerHashes,
+      boardHashes,
       playedHash,
       message,
     } = this.state;
-    const className = message ? styles.messageShown : styles.messageHidden;
     const matricies = Object.entries(boards);
     return (
       <div className={styles.container}>
         <NavBar lastBall={lastBall} played={played} />
         <GameMaster startGame={() => this.start()} drawBall={() => this.draw()} />
-        <Message message={message} className={className} />
+        <Message message={message} />
         <BoardContext.Provider
           value={{
-            playerHashes,
+            boardHashes,
             playedHash,
             matricies,
             lastBall,

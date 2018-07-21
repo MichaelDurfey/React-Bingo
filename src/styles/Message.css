@@ -1,0 +1,40 @@
+:local(.message) {
+  display: flex;
+  position: absolute;
+  top: calc((50% - 87px));
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  justify-content: center;
+  width: 100%;
+}
+
+:local(.message > div) {
+  border: solid 1px black;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(245, 247, 248);
+  width: 50%;
+  height: 100%;
+}
+
+:local(div.messageHidden) {
+  display: none;
+}
+
+:local(div.messageShown) {
+  animation-duration: 1s;
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn { 
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}

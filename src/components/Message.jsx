@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/index.css';
+import styles from '../styles/Message.css';
 
 export default function Message(props) {
-  const { message, className } = props;
+  const { message } = props;
+  const className = message ? styles.messageShown : styles.messageHidden;
   return (
     <div className={`${styles.message} ${className}`}>
       <div>
@@ -15,5 +16,4 @@ export default function Message(props) {
 
 Message.propTypes = {
   message: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
 };

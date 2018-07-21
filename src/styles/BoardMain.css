@@ -1,0 +1,43 @@
+@media (max-width: 1250px) and (min-width: 850px) {
+  :local(.boardMain) {
+    margin-top: 2%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 850px)   and (min-width: 755px){
+  :local(.boardMain) {
+    margin-top: 2%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 755px) and (min-width:563px){
+  :local(.boardMain) {
+    margin-top: 5%;
+    height: 75%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 562px) {
+  :local(.boardMain) {
+    height: 78em;
+  }
+}
+
+:local(.boardBody) {
+  height: 100%;
+  background-color: rgb(245, 247, 248);
+  display: flex;
+  justify-content: center;
+}
+
+:local(.boardMain) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(245, 247, 248);
+}
+
