@@ -1,9 +1,25 @@
 import React from 'react';
 import NavBar from './Navbar';
-import Board from './Board';
+import BoardContext from './context/BoardContext';
+import BoardMain from './BoardMain';
 import GameMaster from './GameMaster';
 import styles from '../styles/index.css';
+import Message from './Message';
 import { gameStart, drawBall, verifyWinner } from '../lib/httpHelpers';
+
+function buildPlayerHashes(board) {
+  const playerHashes = Object.entries(board)
+    .reduce((acc, entry) => {
+      acc[entry[0]] = entry[1]
+        .reduce((arr, curr) => arr.concat(curr))
+        .reduce((hash, curr) => {
+          hash[curr] = true;
+          return hash;
+        }, {});
+      return acc;
+    }, {});
+  return playerHashes;
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -12,8 +28,9 @@ class App extends React.Component {
       boards: [],
       lastBall: 0,
       played: [],
-      hash: {},
-      message: null,
+      playedHash: {},
+      playerHashes: {},
+      message: '',
     };
   }
 
@@ -22,14 +39,20 @@ class App extends React.Component {
   }
 
   start() {
+    const { message } = this.state;
+    if (message) {
+      return;
+    }
     gameStart()
       .then((res) => {
+        const playerHashes = buildPlayerHashes(res.data);
         this.setState(() => ({
           boards: res.data,
           lastBall: 0,
           played: [],
-          hash: {},
-          message: null,
+          playerHashes,
+          playedHash: {},
+          message: '',
         }),
         () => {
           this.draw();
@@ -38,21 +61,25 @@ class App extends React.Component {
   }
 
   draw() {
+    const { message } = this.state;
+    if (message) {
+      return;
+    }
     drawBall()
       .then((res) => {
-        this.setState(({ lastBall, played, hash }) => {
-          const updatedHash = Object.assign({}, hash, { [res.data.num]: true });
+        this.setState(({ lastBall, played, playedHash }) => {
+          const updatedHash = Object.assign({}, playedHash, { [res.data.num]: true });
           if (lastBall) {
             const history = [...played, lastBall];
             return {
               played: history,
               lastBall: res.data.num,
-              hash: updatedHash,
+              playedHash: updatedHash,
             };
           }
           return {
             lastBall: res.data.num,
-            hash: updatedHash,
+            playedHash: updatedHash,
           };
         });
       })
@@ -75,13 +102,13 @@ class App extends React.Component {
               setTimeout(() => {
                 this.setState({ message: '' });
                 this.start();
-              }, 4000);
+              }, 2000);
             }
           );
         } else if (!message) {
           this.setState(
             () => ({ message: 'No winner found yet!' }),
-            () => setTimeout(() => { this.setState({ message: '' }); }, 4000)
+            () => setTimeout(() => { this.setState({ message: '' }); }, 2000)
           );
         }
       });
@@ -92,38 +119,27 @@ class App extends React.Component {
       boards,
       lastBall,
       played,
-      hash,
+      playerHashes,
+      playedHash,
       message,
     } = this.state;
-    const matricies = Object.entries(boards);
     const className = message ? styles.messageShown : styles.messageHidden;
-    const renderBoards = () => (
-      <div className={styles.boardBody}>
-        <div className={styles.boardMain}>
-          { matricies.map(board => (
-            <Board
-              onClick={id => this.checkWinner(id)}
-              hash={hash}
-              message={message}
-              player={board[0]}
-              key={`${board[1][0].join('')}`}
-              board={board[1]}
-            />))
-          }
-        </div>
-      </div>
-    );
-
+    const matricies = Object.entries(boards);
     return (
       <div className={styles.container}>
         <NavBar lastBall={lastBall} played={played} />
         <GameMaster startGame={() => this.start()} drawBall={() => this.draw()} />
-        <div className={`${styles.message} ${className}`}>
-          <div>
-          { message }
-          </div>
-        </div>
-        { renderBoards() }
+        <Message message={message} className={className} />
+        <BoardContext.Provider
+          value={{
+            playerHashes,
+            playedHash,
+            matricies,
+            lastBall,
+          }}
+        >
+          <BoardMain checkWinner={player => this.checkWinner(player)} />
+        </BoardContext.Provider>
       </div>
     );
   }

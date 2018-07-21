@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/Square.css';
 
 const Square = (props) => {
-  const { selected } = props;
-  const { number } = props;
+  const { number, selected } = props;
   return (
     <div
       role="presentation"
