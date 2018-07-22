@@ -5,6 +5,7 @@ import BoardMain from './BoardMain';
 import GameMaster from './GameMaster';
 import styles from '../styles/index.css';
 import Message from './Message';
+import socket from '../lib/socket';
 import { gameStart, drawBall, verifyWinner } from '../lib/httpHelpers';
 
 function buildBoardHashes(board) {
@@ -62,6 +63,7 @@ class App extends React.Component {
     if (message) {
       return;
     }
+    socket.send(JSON.stringify({ type: 'drawBall' }));
     drawBall()
       .then((res) => {
         this.setState(({ lastBall, played, playedHash }) => {

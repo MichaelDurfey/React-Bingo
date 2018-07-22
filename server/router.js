@@ -9,13 +9,13 @@ router
     res.send(db.boards);
   })
   .get('/draw', (req, res) => {
-    const dbRes = db.drawBall();
-    if (dbRes.num === undefined) {
-      // TODO implement this logic
-      res.send({ state: 'game over' });
-    } else {
-      res.send(dbRes);
-    }
+    // const dbRes = db.drawBall();
+    // if (dbRes.num === undefined) {
+    //   // TODO implement this logic
+    //   res.send({ state: 'game over' });
+    // } else {
+    //   res.send({ num: 2 });
+    // }
   })
   .get('/verify/:id', (req, res) => {
     const player = req.params.id;
