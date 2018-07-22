@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../db');
+const path = require('path');
 
 const router = express.Router();
 
@@ -16,6 +17,9 @@ router
     } else {
       res.send(dbRes);
     }
+  })
+  .get('/gameMaster', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../src/GM.html'));
   })
   .get('/verify/:id', (req, res) => {
     const player = req.params.id;

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Square the component renders with correct classNames if Selected 1`] = `
+<div
+  className="square"
+  role="presentation"
+>
+  63
+</div>
+`;
+
+exports[`Square the component renders with correct classNames if not Selected 1`] = `
+<div
+  className="square"
+  role="presentation"
+>
+  25
+</div>
+`;

@@ -1,9 +1,10 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-module.exports = merge(common, {
+const app = {
   mode: 'development',
   entry: [
     'react-hot-loader/patch',
@@ -13,8 +14,29 @@ module.exports = merge(common, {
     new webpack.HotModuleReplacementPlugin(),
   ],
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    hot: true,
+};
+
+const gameMaster = {
+  mode: 'development',
+  entry: {
+    app: path.resolve(__dirname, './src/components/GM.jsx'),
   },
-});
+  resolve: {
+    extensions: ['.js', '.jsx', '.css'],
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'gmBundle.js',
+  },
+  plugins: [
+    // new HtmlWebpackPlugin({
+    //   template: 'src/GM.html',
+    // }),
+  ],
+};
+
+module.exports = [
+  merge(common, app),
+  merge(common, gameMaster),
+];

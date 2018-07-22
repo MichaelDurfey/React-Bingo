@@ -88,6 +88,7 @@ class BoardClass {
   }
 
   drawBall() {
+    console.log('drawball')
     this.shuffle();
     const popped = this.numbers.pop();
     this.played[popped] = true;
