@@ -7,11 +7,11 @@ const path = require('path');
 const app = {
   mode: 'development',
   entry: [
-    'react-hot-loader/patch',
+    // 'react-hot-loader/patch',
     './src/index.jsx',
   ],
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
   devtool: 'inline-source-map',
 };

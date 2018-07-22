@@ -3,22 +3,24 @@ import Board from './Board';
 import BoardContext from './context/BoardContext';
 import styles from '../styles/BoardMain.css';
 
-const BoardMain = props => (
+const BoardMain = () => (
   <div className={styles.boardBody}>
     <div className={styles.boardMain}>
       <BoardContext.Consumer>
         {({
+          boards,
           boardHashes,
           playedHash,
-          matricies,
           lastBall,
-        }) => (
-          matricies.map((objEntries) => {
+          checkWinner,
+        }) => {
+          const matricies = Object.entries(boards);
+          return matricies.map((objEntries) => {
             const [player, key, board] = [objEntries[0], objEntries[1][0], objEntries[1]];
             const hash = boardHashes[player];
             return (
               <Board
-                {...props}
+                checkWinner={checkWinner}
                 hash={hash}
                 lastBall={lastBall}
                 playedHash={playedHash}
@@ -27,8 +29,8 @@ const BoardMain = props => (
                 board={board}
               />
             );
-          })
-        )}
+          });
+        }}
       </BoardContext.Consumer>
     </div>
   </div>

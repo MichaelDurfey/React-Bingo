@@ -18,8 +18,8 @@ router
       res.send(dbRes);
     }
   })
-  .get('/gameMaster', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../src/GM.html'));
+  .get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
   })
   .get('/verify/:id', (req, res) => {
     const player = req.params.id;
