@@ -40,6 +40,7 @@ module.exports = {
   target: 'web',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: true,
     hot: true,
   },
 };
