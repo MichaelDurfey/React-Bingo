@@ -9,18 +9,6 @@ router
     db.initialize();
     res.send(db.boards);
   })
-  .get('/draw', (req, res) => {
-    const dbRes = db.drawBall();
-    if (dbRes.num === undefined) {
-      // TODO implement this logic
-      res.send({ state: 'game over' });
-    } else {
-      res.send(dbRes);
-    }
-  })
-  .get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../src', 'index.html'));
-  })
   .get('/verify/:id', (req, res) => {
     const player = req.params.id;
     const winner = db.checkWin(player);
@@ -28,6 +16,9 @@ router
       player,
       winner,
     });
+  })
+  .get('/gameMaster', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../src', 'index.html'));
   });
 
 module.exports = router;

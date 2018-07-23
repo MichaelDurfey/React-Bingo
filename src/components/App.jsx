@@ -4,6 +4,7 @@ import styles from '../styles/index.css';
 import LandingContext from './context/LandingContext';
 import GMContext from './context/GMContext';
 import Landing from './Landing';
+import socketConnection from '../lib/socketSetup';
 import GM from './GM';
 import { gameStart, drawBall, verifyWinner } from '../lib/httpHelpers';
 
@@ -44,6 +45,24 @@ class App extends React.Component {
         });
     };
 
+    this.handleNewBall = (ball) => {
+      this.setState(({ lastBall, played, playedHash }) => {
+        const updatedHash = Object.assign({}, playedHash, { [ball]: true });
+        if (lastBall) {
+          const history = [...played, lastBall];
+          return {
+            played: history,
+            lastBall: ball,
+            playedHash: updatedHash,
+          };
+        }
+        return {
+          lastBall: ball,
+          playedHash: updatedHash,
+        };
+      });
+    };
+
     this.draw = () => {
       const { message } = this.state;
       if (message) {
@@ -51,21 +70,7 @@ class App extends React.Component {
       }
       drawBall()
         .then((res) => {
-          this.setState(({ lastBall, played, playedHash }) => {
-            const updatedHash = Object.assign({}, playedHash, { [res.data.num]: true });
-            if (lastBall) {
-              const history = [...played, lastBall];
-              return {
-                played: history,
-                lastBall: res.data.num,
-                playedHash: updatedHash,
-              };
-            }
-            return {
-              lastBall: res.data.num,
-              playedHash: updatedHash,
-            };
-          });
+          this.handleNewBall(res.data.num);
         })
         .catch((err) => {
           console.log(err);
@@ -114,10 +119,6 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.start();
-  }
-
   render() {
     const FourOhFour = () => (
       <h1>
@@ -135,9 +136,8 @@ class App extends React.Component {
           <Switch>
             <LandingContext.Provider value={this.state}>
               <GMContext.Provider value={{ draw, start }}>
-                <Route exact path="/" component={Landing} />
+                <Route exact path="/" component={Landing} start={start} />
                 <Route path="/gameMaster" component={GM} />
-                <Route component={FourOhFour} />
               </GMContext.Provider>
             </LandingContext.Provider>
           </Switch>

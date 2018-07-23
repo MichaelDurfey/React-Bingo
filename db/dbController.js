@@ -3,6 +3,7 @@ const db = require('./index');
 async function drawBall(req, res, ws) {
   const ball = await db.drawBall();
   if (ball) {
+    console.log(ball)
     ws.send(JSON.stringify(ball))
     return res.send(ball)
   } else {

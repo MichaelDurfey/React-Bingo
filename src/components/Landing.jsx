@@ -13,11 +13,12 @@ const Landing = () => (
         <NavBar lastBall={data.lastBall} played={data.played} />
         <Message message={data.message} />
         <BoardContext.Provider value={data}>
-          <BoardMain />
+          { data.boards.length ? <BoardMain /> : <h1>Waiting for gameMaster!</h1> }
         </BoardContext.Provider>
       </div>
     )}
   </LandingContext.Consumer>
 );
+
 
 export default Landing;

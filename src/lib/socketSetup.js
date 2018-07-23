@@ -1,4 +1,5 @@
 const socketConnection = new WebSocket('ws://localhost:3000');
+import socketControllers from './socketControllers';
 
 socketConnection.onopen = () => {
   console.log('websocket open');
