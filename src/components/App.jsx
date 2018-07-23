@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import NavBar from './Navbar';
 import styles from '../styles/index.css';
 import LandingContext from './context/LandingContext';
 import GMContext from './context/GMContext';
@@ -120,6 +119,10 @@ class App extends React.Component {
   }
 
   render() {
+    const FourOhFour = () => (
+      <h1>
+        404
+      </h1>);
     const {
       lastBall,
       played,
@@ -128,13 +131,13 @@ class App extends React.Component {
     } = this.state;
     return (
       <div className={styles.container}>
-        <NavBar lastBall={lastBall} played={played} />
         <BrowserRouter>
           <Switch>
             <LandingContext.Provider value={this.state}>
               <GMContext.Provider value={{ draw, start }}>
                 <Route exact path="/" component={Landing} />
-                <Route exact path="/gameMaster" component={GM} />
+                <Route path="/gameMaster" component={GM} />
+                <Route component={FourOhFour} />
               </GMContext.Provider>
             </LandingContext.Provider>
           </Switch>

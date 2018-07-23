@@ -32,10 +32,10 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    // new CleanWebpackPlugin(['dist']),
-    // new HtmlWebpackPlugin({
-    //   template: 'src/index.html',
-    // }),
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
   ],
   target: 'web',
   devServer: {

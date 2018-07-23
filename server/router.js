@@ -19,7 +19,7 @@ router
     }
   })
   .get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../src', 'index.html'));
   })
   .get('/verify/:id', (req, res) => {
     const player = req.params.id;
