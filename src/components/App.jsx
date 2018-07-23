@@ -4,7 +4,7 @@ import styles from '../styles/index.css';
 import LandingContext from './context/LandingContext';
 import GMContext from './context/GMContext';
 import Landing from './Landing';
-import socketConnection from '../lib/socketSetup';
+// import socketConnection from '../lib/socketSetup';
 import GM from './GM';
 import { gameStart, drawBall, verifyWinner } from '../lib/httpHelpers';
 
