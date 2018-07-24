@@ -17,7 +17,6 @@ const LastPlayedBall = lastBall => (
 class NavBar extends React.Component {
   shouldComponentUpdate(nextProps) {
     const { lastBall } = this.props;
-    console.log(nextProps.lastBall, lastBall);
     if (!lastBall || lastBall !== nextProps.lastBall) {
       return true;
     }
