@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../App';
+import Landing from '../../containers/Landing';
 
-describe('App', () => {
+describe('Landing', () => {
   test('it renders correctly with defaults', () => {
     const container = document.createElement('div');
-    ReactDOM.render(<App />, container);
+    ReactDOM.render(<Landing />, container);
     console.log(container);
   });
 })

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Square from './Square';
+import { connect } from 'react-redux';
+import { requestVerify } from '../actions';
+import Square from '../components/Square';
 import styles from '../styles/Board.css';
 
 class Board extends Component {
   shouldComponentUpdate(nextProps) {
-    const { hash } = this.props;
-    if (nextProps.lastBall in hash) {
+    const { playerBoardHash } = this.props;
+    if (nextProps.lastBall in playerBoardHash) {
       return true;
     }
     return false;
@@ -43,14 +45,25 @@ class Board extends Component {
   }
 }
 
-export default Board;
+const mapStateToProps = ({ playedHash, lastBall }) => ({
+  playedHash,
+  lastBall,
+});
+
+const mapDispatchToProps = dispatch => ({
+  checkWinner: (player) => {
+    dispatch(requestVerify(player));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
 
 Board.propTypes = {
   board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]))).isRequired,
-  hash: PropTypes.objectOf(PropTypes.bool).isRequired,
+  playerBoardHash: PropTypes.objectOf(PropTypes.bool).isRequired,
   checkWinner: PropTypes.func.isRequired,
   player: PropTypes.string.isRequired,
   lastBall: PropTypes.number.isRequired,
