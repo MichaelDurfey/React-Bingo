@@ -8,13 +8,14 @@
     "dev-server": "node ./server/dev-server.js",
     "prod": "webpack --config ./webpack.prod.js",
     "server": "nodemon ./server/index.js",
-    "test": "jest",
+    "test": "jest --env=jsdom",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --env=jsdom"
   },
   "jest": {
-    "testEnvironment": "jest-environment-node",
-    "setupTestFrameworkScriptFile": "<rootDir>/testConfig.js",
+    "setupFiles": [
+      "<rootDir>/testConfig.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
@@ -30,23 +31,19 @@
       "webpack.dev.js",
       "webpack.prod.js",
       ".babelrc",
-      "bundle.js",
-      "/coverage/",
-      "knexfile.js",
-      "/server/db/seed.js",
-      "/server/db/migrations"
+      "bundle.js"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MichaelDurfey/React-Boilerplate.git"
+    "url": "git+https://github.com/MichaelDurfey/React-Bingo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MichaelDurfey/React-Boilerplate/issues"
+    "url": "https://github.com/MichaelDurfey/React-Bingo/issues"
   },
-  "homepage": "https://github.com/MichaelDurfey/React-Boilerplate#readme",
+  "homepage": "https://github.com/MichaelDurfey/React-Bingo#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^23.4.0",
@@ -71,6 +68,7 @@
     "nodemon": "^1.18.1",
     "react-hot-loader": "^4.3.3",
     "react-test-renderer": "^16.4.1",
+    "redux-mock-store": "^1.5.3",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.8.3",
