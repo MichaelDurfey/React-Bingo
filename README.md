@@ -1,12 +1,13 @@
 # React-Bingo
 
+Implementation of Bingo utilizing React, Redux, Redux-Saga, WebSockets, Express and WebPack
+
 ### Instructions:
   1. fork or clone this repo
   2. run :
       ``` 
       npm install
       ```
-  
   #### For development server: 
   1. run commands:
       ``` 
