@@ -2,7 +2,8 @@
     "extends": "airbnb",
     "rules": { 
         "no-plusplus": "warn",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "comma-dangle": "off"
     },
     "env": {
         "browser": true,
