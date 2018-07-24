@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message it renders correctly with defaults 1`] = `
+<div
+  className="navBar"
+>
+  <div
+    className="lastBallText"
+  >
+    Last Ball
+  </div>
+  <div
+    className="playedContainer"
+  >
+    <div
+      className="playedText"
+    >
+      previous balls
+    </div>
+    <div
+      className="playedNumbers"
+    />
+  </div>
+</div>
+`;
