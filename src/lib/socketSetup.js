@@ -1,5 +1,4 @@
 import { receiveBall } from '../actions';
-// import socketControllers from './socketControllers';
 
 
 const setupSocket = (dispatch) => {
@@ -14,6 +13,7 @@ const setupSocket = (dispatch) => {
     } else if (res.winner) {
       dispatch({ type: 'REQUEST_RESET' });
     } else {
+      // socket disconnected
       console.log(res);
     }
   };
