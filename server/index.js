@@ -14,7 +14,11 @@ const wss = new WebSocket.Server({ server });
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 wss.on('connection', (ws) => {
-  app.get('/draw', (req, res) => controller.drawBall(req, res, ws));
+  app.get('/draw', (req, res) => controller.drawBall(req, res, ws, wss, WebSocket));
+  app.get('/verify/:id', (req, res) => controller.checkWin(req, res, ws, wss, WebSocket));
+  ws.on('close', () => {
+    controller.broadcast('connection lost', ws, wss, WebSocket);
+  });
 });
 
 app.use('/', routes);
